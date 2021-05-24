@@ -1,6 +1,7 @@
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
 from time import sleep
+from PIL import Image, ImageChops
 
 desired_caps = {}
 desired_caps['platformName'] = 'Android'
@@ -17,24 +18,59 @@ actions = TouchAction(driver)
 
 driver.reset()
 driver.find_element_by_id("org.isoron.uhabits:id/next").click()
+sleep(1)
 driver.find_element_by_id("org.isoron.uhabits:id/next").click()
+sleep(1)
 driver.find_element_by_id("org.isoron.uhabits:id/done").click()
+sleep(1)
 driver.find_element_by_id("org.isoron.uhabits:id/actionCreateBooleanHabit").click()
+sleep(1)
 driver.find_element_by_id("org.isoron.uhabits:id/tvName").send_keys("hello")
+sleep(1)
 driver.find_element_by_id("org.isoron.uhabits:id/buttonSave").click()
+sleep(1)
 driver.close_app()
+sleep(1)
 driver.launch_app()
+sleep(1)
 incorrectDate = driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.view.View[1]")
+sleep(1)
 correctDate = driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.view.View[2]")
+sleep(1)
 
 actions.long_press(incorrectDate)
 actions.perform()
+sleep(1)
+
 actions.long_press(incorrectDate)
 actions.perform()
+sleep(1)
 actions.long_press(correctDate)
 actions.perform()
-print(incorrectDate.text)
-print(correctDate.text)
+sleep(1)
+
+incorrectDate.screenshot("./incorrectDate.png")
+correctDate.screenshot("./correctDate.png")
+
+assert ImageChops.difference(Image.open("./correctDate.png"), Image.open("./expected_explicit_check.png")).getbbox() is None
+# assert ImageChops.difference(Image.open("./incorrectDate.png"), Image.open("./expected_unchecked.png")).getbbox() is None
+assert ImageChops.difference(Image.open("./correctDate.png"), Image.open("./expected_unchecked.png")).getbbox() is None
+
+# print(incorrectDate.get_attribute("className"))
+# print(incorrectDate.get_attribute("checked"))
+# print(incorrectDate.get_attribute("contentDescription"))
+# print(incorrectDate.get_attribute("resourceId"))
+# print(incorrectDate.get_attribute("selected"))
+# print(incorrectDate.get_attribute("text"))
+
+# print("-----------------------------")
+
+# print(correctDate.get_attribute("className"))
+# print(correctDate.get_attribute("checked"))
+# print(correctDate.get_attribute("contentDescription"))
+# print(correctDate.get_attribute("resourceId"))
+# print(correctDate.get_attribute("selected"))
+# print(correctDate.get_attribute("text"))
 
 # actualVal = driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView").text
 # assert 'hello' == actualVal
