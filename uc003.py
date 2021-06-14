@@ -1,7 +1,5 @@
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
-from time import sleep
-from PIL import Image, ImageChops
 import unittest
 
 class Uc003 (unittest.TestCase):
@@ -25,8 +23,10 @@ class Uc003 (unittest.TestCase):
         self.driver.find_element_by_id("org.isoron.uhabits:id/next").click()
         self.driver.find_element_by_id("org.isoron.uhabits:id/done").click()
         self.driver.find_element_by_id("org.isoron.uhabits:id/actionCreateBooleanHabit").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/tvName").click()
         self.driver.find_element_by_id("org.isoron.uhabits:id/tvName").send_keys("")
         self.driver.find_element_by_id("org.isoron.uhabits:id/buttonSave").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/tvName").click()
         self.driver.find_element_by_id("org.isoron.uhabits:id/tvName").send_keys("hello")
         self.driver.find_element_by_id("org.isoron.uhabits:id/buttonPickColor").click()
         self.driver.find_element_by_xpath("//android.widget.FrameLayout[@content-desc=\"Color 2\"]/android.widget.ImageView").click()
@@ -41,8 +41,42 @@ class Uc003 (unittest.TestCase):
         self.driver.close_app()
         self.driver.launch_app()
         actualVal = self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView").text
-        assert 'hello' == actualVal
-        sleep(5)
+        self.assertEqual('hello', actualVal)
+
+    def test_uatc003_add_habit_ISP(self):
+        self.driver.reset()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/next").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/next").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/done").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/actionCreateBooleanHabit").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/tvName").send_keys("")
+        self.driver.find_element_by_id("org.isoron.uhabits:id/buttonSave").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/tvName").send_keys("吃藥")
+        self.driver.find_element_by_id("org.isoron.uhabits:id/buttonPickColor").click()
+        self.driver.find_element_by_xpath("//android.widget.FrameLayout[@content-desc=\"Color 1\"]/android.widget.ImageView").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/tvDescription").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/tvDescription").send_keys("每次三顆")
+        self.driver.find_element_by_id("org.isoron.uhabits:id/spinner").click()
+        self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[5]").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/denominator").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/denominator").clear()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/denominator").send_keys("3")
+        self.driver.find_element_by_id("org.isoron.uhabits:id/tvReminderTime").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/done_button").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/tvReminderDays").click()
+        self.driver.find_element_by_xpath('//android.widget.CheckedTextView[@text="Saturday"]').click()
+        self.driver.find_element_by_xpath('//android.widget.CheckedTextView[@text="Sunday"]').click()
+        self.driver.find_element_by_xpath('//android.widget.CheckedTextView[@text="Tuesday"]').click()
+        self.driver.find_element_by_xpath('//android.widget.CheckedTextView[@text="Wednesday"]').click()
+        self.driver.find_element_by_xpath('//android.widget.CheckedTextView[@text="Thursday"]').click()
+        self.driver.find_element_by_xpath('//android.widget.CheckedTextView[@text="Friday"]').click()
+        self.driver.find_element_by_id("android:id/button1").click()
+        self.driver.find_element_by_id("org.isoron.uhabits:id/buttonSave").click()
+
+        self.driver.close_app()
+        self.driver.launch_app()
+        actualVal = self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView").text
+        self.assertEqual('吃藥', actualVal)
     
     def test_uatc004_add_habit(self):
         self.driver.reset()
@@ -63,8 +97,7 @@ class Uc003 (unittest.TestCase):
         self.driver.close_app()
         self.driver.launch_app()
         actualVal = self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView").text
-        assert 'hello' == actualVal
-        sleep(5)
+        self.assertEqual('hello', actualVal)
 
     def test_uatc005_add_habit(self):
         self.driver.reset()
@@ -80,8 +113,7 @@ class Uc003 (unittest.TestCase):
         self.driver.close_app()
         self.driver.launch_app()
         actualVal = self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView").text
-        assert 'hello' == actualVal
-        sleep(5)
+        self.assertEqual('hello', actualVal)
 
 if __name__ == '__main__':
     unittest.main()

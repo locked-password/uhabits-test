@@ -1,7 +1,5 @@
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
-from time import sleep
-from PIL import Image, ImageChops
 import unittest
 
 class Uc004 (unittest.TestCase):
@@ -33,7 +31,6 @@ class Uc004 (unittest.TestCase):
         self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView").click()        
         actualVal = self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView").text
         self.assertEqual('Overview', actualVal)
-        sleep(5)
 
 if __name__ == '__main__':
     unittest.main()

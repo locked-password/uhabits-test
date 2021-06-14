@@ -1,5 +1,4 @@
 from appium import webdriver
-from time import sleep
 import unittest
 
 class Uc001 (unittest.TestCase):
@@ -27,8 +26,8 @@ class Uc001 (unittest.TestCase):
         self.driver.close_app()
         self.driver.launch_app()
         actualVal = self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView").text
-        assert 'hello' == actualVal
-        sleep(5)
+        self.assertEqual('hello', actualVal)
+        
 
 if __name__ == '__main__':
     unittest.main()

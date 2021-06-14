@@ -1,7 +1,5 @@
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
-from time import sleep
-from PIL import Image, ImageChops
 import unittest
 
 class Uc007 (unittest.TestCase):
@@ -38,7 +36,6 @@ class Uc007 (unittest.TestCase):
         self.habit_detail_scroll_to_bottom()
         actualVal = self.driver.find_element_by_xpath("//android.widget.LinearLayout[@index='4']/android.widget.TextView").text
         self.assertEqual('Calendar', actualVal)
-        sleep(5)
 
 if __name__ == '__main__':
     unittest.main()

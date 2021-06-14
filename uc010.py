@@ -1,7 +1,5 @@
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
-from time import sleep
-from PIL import Image, ImageChops
 import unittest
 
 class Uc010 (unittest.TestCase):
@@ -43,7 +41,6 @@ class Uc010 (unittest.TestCase):
         self.actions.tap(x=213, y=1013).perform()
         self.driver.find_element_by_id("android:id/button1").click()
         # TODO assert
-        sleep(5)
 
 if __name__ == '__main__':
     unittest.main()
