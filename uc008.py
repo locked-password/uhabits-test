@@ -37,6 +37,9 @@ class Uc008 (unittest.TestCase):
         actualVal = self.driver.find_element_by_xpath("//android.widget.LinearLayout[@index='5']/android.widget.TextView").text
         self.assertEqual('Best streaks', actualVal)
 
+    def tearDown(self):
+        self.driver.quit()
+
 if __name__ == '__main__':
     unittest.main()
 

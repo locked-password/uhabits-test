@@ -32,6 +32,9 @@ class Uc004 (unittest.TestCase):
         actualVal = self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView").text
         self.assertEqual('Overview', actualVal)
 
+    def tearDown(self):
+        self.driver.quit()
+
 if __name__ == '__main__':
     unittest.main()
 

@@ -42,6 +42,9 @@ class Uc010 (unittest.TestCase):
         self.driver.find_element_by_id("android:id/button1").click()
         # TODO assert
 
+    def tearDown(self):
+        self.driver.quit()
+
 if __name__ == '__main__':
     unittest.main()
 

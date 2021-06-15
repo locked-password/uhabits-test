@@ -1,6 +1,7 @@
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
 import unittest
+from time import sleep
 
 class Uc003 (unittest.TestCase):
     def setUp(self):
@@ -90,6 +91,8 @@ class Uc003 (unittest.TestCase):
         self.driver.find_element_by_id("org.isoron.uhabits:id/tvReminderTime").click()
         self.driver.find_element_by_id("org.isoron.uhabits:id/done_button").click()
         self.driver.find_element_by_id("org.isoron.uhabits:id/buttonSave").click()
+        sleep(1)
+        self.driver.find_element_by_id("org.isoron.uhabits:id/tvName").click()
         self.driver.find_element_by_id("org.isoron.uhabits:id/tvName").send_keys("hello")
         self.driver.find_element_by_id("org.isoron.uhabits:id/spinner").click()
         self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[5]").click()
@@ -114,6 +117,9 @@ class Uc003 (unittest.TestCase):
         self.driver.launch_app()
         actualVal = self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView").text
         self.assertEqual('hello', actualVal)
+
+    def tearDown(self):
+        self.driver.quit()
 
 if __name__ == '__main__':
     unittest.main()

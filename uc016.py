@@ -102,6 +102,9 @@ class Uc016 (unittest.TestCase):
         self.assertEqual('餵狗', elements[0].text)
         self.assertEqual('洗澡', elements[1].text)
     
+    def tearDown(self):
+        self.driver.quit()
+
 if __name__ == '__main__':
     unittest.main()
 

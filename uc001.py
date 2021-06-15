@@ -27,6 +27,9 @@ class Uc001 (unittest.TestCase):
         self.driver.launch_app()
         actualVal = self.driver.find_element_by_xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.TextView").text
         self.assertEqual('hello', actualVal)
+
+    def tearDown(self):
+        self.driver.quit()
         
 
 if __name__ == '__main__':

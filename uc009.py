@@ -37,6 +37,9 @@ class Uc009 (unittest.TestCase):
         actualVal = self.driver.find_element_by_xpath("//android.widget.LinearLayout[@index='6']/android.widget.TextView").text
         self.assertEqual('Frequency', actualVal)
 
+    def tearDown(self):
+        self.driver.quit()
+
 if __name__ == '__main__':
     unittest.main()
 

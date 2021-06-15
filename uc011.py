@@ -104,7 +104,10 @@ class Uc011 (unittest.TestCase):
         messageActualVal = self.driver.find_element_by_id("org.isoron.uhabits:id/questionLabel").text
         reminderActualVal = self.driver.find_element_by_id("org.isoron.uhabits:id/reminderLabel").text
         self.assertEqual('this is edited message', messageActualVal)
-        self.assertEqual('08:00', reminderActualVal)
+        self.assertEqual('8:00 AM', reminderActualVal)
+
+    def tearDown(self):
+        self.driver.quit()
 
 if __name__ == '__main__':
     unittest.main()
